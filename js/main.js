@@ -1,10 +1,11 @@
 /**
  * CRAD-JOS — Diagnostic Services
- * Main Application Logic & Micro-interactions
+ * Luminous Ambience & Interactive Dynamic Micro-Interactions
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initParticles();
+  initCardSpotlights();
   initServiceFilter();
   initScrollTop();
   initHeaderScroll();
@@ -14,37 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 1. Floating Particles Generator for Hero
- * Recreates the purple/violet particle cosmos from original specs
+ * 1. Multi-Spectrum Photons (Purple, Cyan & Lavender)
+ * Enhanced with glowing aura shadows
  */
 function initParticles() {
   const container = document.getElementById('particle-container');
   if (!container) return;
 
-  const count = 24;
+  const count = 28;
   const colors = [
-    'rgba(168, 85, 247, 0.55)',
-    'rgba(139, 92, 246, 0.50)',
-    'rgba(233, 213, 255, 0.40)'
+    { bg: 'rgba(168, 85, 247, 0.65)', shadow: 'rgba(168, 85, 247, 0.8)' },
+    { bg: 'rgba(6, 182, 212, 0.60)', shadow: 'rgba(6, 182, 212, 0.75)' },
+    { bg: 'rgba(192, 132, 252, 0.55)', shadow: 'rgba(192, 132, 252, 0.7)' },
+    { bg: 'rgba(16, 185, 129, 0.50)', shadow: 'rgba(16, 185, 129, 0.65)' }
   ];
 
   for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
     p.className = 'lp-particle';
 
-    const left = (i * 4.1 + 2) % 96;
-    const top = (i * 6.2 + 8) % 88;
-    const delay = (i * 0.28).toFixed(2);
-    const duration = 3 + (i % 5);
-    const size = i % 3 === 0 ? 4 : i % 3 === 1 ? 3 : 2;
-    const color = colors[i % 3];
+    const left = (i * 3.7 + 2) % 96;
+    const top = (i * 5.9 + 6) % 88;
+    const delay = (i * 0.22).toFixed(2);
+    const duration = 3.5 + (i % 4);
+    const size = i % 4 === 0 ? 4 : i % 4 === 1 ? 3 : 2;
+    const colorObj = colors[i % colors.length];
 
     p.style.left = `${left}%`;
     p.style.top = `${top}%`;
     p.style.width = `${size}px`;
     p.style.height = `${size}px`;
-    p.style.backgroundColor = color;
-    p.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+    p.style.backgroundColor = colorObj.bg;
+    p.style.boxShadow = `0 0 ${size * 3}px ${colorObj.shadow}`;
     p.style.animation = `float-particle ${duration}s ease-in-out ${delay}s infinite`;
 
     container.appendChild(p);
@@ -52,8 +54,27 @@ function initParticles() {
 }
 
 /**
- * 2. Service Category Filter
- * Filters between 'all', 'imaging', and 'lab'
+ * 2. Interactive Cursor-Tracking Spotlight for Glass Cards
+ * Dynamically binds --mouse-x and --mouse-y on mousemove
+ */
+function initCardSpotlights() {
+  const cards = document.querySelectorAll('.glow-card, .facility-card, .feature-box');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+/**
+ * 3. Service Category Filter
+ * Filters between 'all', 'imaging', and 'lab' with smooth scaling
  */
 function initServiceFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -74,7 +95,7 @@ function initServiceFilter() {
         if (filter === 'all' || category === filter) {
           card.style.display = 'flex';
           card.style.opacity = '0';
-          card.style.transform = 'scale(0.95)';
+          card.style.transform = 'scale(0.96)';
           setTimeout(() => {
             card.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
             card.style.opacity = '1';
@@ -89,14 +110,14 @@ function initServiceFilter() {
 }
 
 /**
- * 3. Scroll to Top Floating Button
+ * 4. Scroll to Top Floating Button
  */
 function initScrollTop() {
   const scrollBtn = document.getElementById('scroll-top-btn');
   if (!scrollBtn) return;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 450) {
+    if (window.scrollY > 400) {
       scrollBtn.classList.add('visible');
     } else {
       scrollBtn.classList.remove('visible');
@@ -112,7 +133,7 @@ function initScrollTop() {
 }
 
 /**
- * 4. Header Shadow on Scroll
+ * 5. Header Dynamic Styling on Scroll
  */
 function initHeaderScroll() {
   const header = document.querySelector('.site-header');
@@ -120,17 +141,17 @@ function initHeaderScroll() {
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
-      header.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.6)';
-      header.style.borderBottomColor = 'rgba(168, 85, 247, 0.2)';
+      header.style.boxShadow = '0 10px 35px rgba(0, 0, 0, 0.7)';
+      header.style.borderBottomColor = 'rgba(192, 132, 252, 0.35)';
     } else {
       header.style.boxShadow = 'none';
-      header.style.borderBottomColor = 'rgba(255, 255, 255, 0.05)';
+      header.style.borderBottomColor = 'rgba(168, 85, 247, 0.18)';
     }
   }, { passive: true });
 }
 
 /**
- * 5. Mobile Navigation
+ * 6. Mobile Navigation Drawer
  */
 function initMobileNav() {
   const toggleBtn = document.getElementById('mobile-menu-toggle');
@@ -142,7 +163,6 @@ function initMobileNav() {
     panel.classList.toggle('open');
   });
 
-  // Close when clicking mobile links
   panel.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       panel.classList.remove('open');
@@ -151,7 +171,7 @@ function initMobileNav() {
 }
 
 /**
- * 6. Quick Inquiry / Appointment Modal
+ * 7. Quick Inquiry / Appointment Modal
  */
 function initModal() {
   const modal = document.getElementById('inquiry-modal');
@@ -179,14 +199,12 @@ function initModal() {
     });
   }
 
-  // Click outside to close
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
       modal.classList.remove('active');
     }
   });
 
-  // Form Submission
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -213,7 +231,7 @@ function initModal() {
 }
 
 /**
- * 7. Smooth Scroll for in-page anchors
+ * 8. Smooth Scroll for Anchor Links
  */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
