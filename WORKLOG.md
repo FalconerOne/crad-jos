@@ -79,3 +79,22 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
     - *Option 3 (Editorial Medical Precision):* Upgraded to dual-tone illuminated icon pods (`.card-icon-imaging` in violet-cyan, `.card-icon-lab` in purple-emerald), high-contrast crisp typography, and live clinical telemetry radar pill.
   - **Verification:** Ran post-refactor sweep (`npm test`): 11/11 invariants passing (100%).
   - **Deployment:** Deployed upgraded bundle to Firebase Hosting (`https://crad-jos.web.app`).
+
+---
+
+### [2026-10-05] Mobile Drawer Implementation & Direct Portal Navigation Away
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - **Mobile Drawer Component:**
+    - Implemented `.mobile-nav-panel` with smooth slide-down animation, glassmorphism blur (`backdrop-filter: blur(28px)`), and radial border glow.
+    - Added animated hamburger icon toggle state (`.mobile-menu-btn.open`) with cross ('X') transition.
+    - Added full-bleed `.mobile-nav-backdrop` overlay with touch/click dismiss, ESC key handler, and `body` scroll lock.
+    - Integrated top prominent action button (`.mobile-drawer-portal-btn`) leading directly to `https://portal.c-rad.com.ng`.
+    - Added smooth mobile navigation link list (`.mobile-links-list`) with directional chevron indicators and quick call desk link (`0814 684 4470`) + Staff Portal link.
+  - **Navigate Away (Same-Tab) Protocol:**
+    - Stripped all `target="_blank" rel="noopener noreferrer"` attributes from portal access points (Header CTA, Mobile Drawer CTA, Hero Banner CTA, Diagnostic Reports CTA, and Footer Staff Access), ensuring users navigate away directly in the same tab to `https://portal.c-rad.com.ng`.
+    - Retained service cards ("Inquire for Scan") and local inquiry modal triggers intact, pending subsequent direction.
+  - **Zero-Token Verification:**
+    - Executed `node scripts/sweep.js` headless assertion runner: 11/11 invariants PASSED (100%).
+
