@@ -70,6 +70,10 @@ async function runSweep() {
     'index.html',
     'css/styles.css',
     'js/main.js',
+    'js/firebase-init.js',
+    'firebase-messaging-sw.js',
+    'firebase.json',
+    '.firebaserc',
     'public/logo.svg',
     'public/icon-512.png',
     'public/manifest.json'
@@ -154,6 +158,11 @@ async function runSweep() {
   const missingRes = await checkHttpRequest('/nonexistent-test-probe');
   const missingOk = missingRes.statusCode === 404;
   record('Contract', '404 Route Containment', missingOk, `Status ${missingRes.statusCode} returned properly`);
+
+  // 11. FCM Service Worker Route Contract
+  const swRes = await checkHttpRequest('/firebase-messaging-sw.js');
+  const swOk = swRes.statusCode === 200 && swRes.contentType.includes('javascript');
+  record('Contract', 'FCM Service Worker Route', swOk, `Status ${swRes.statusCode}, ${swRes.contentType.split(';')[0]}`);
 
   // Print results
   printAsciiTable();
