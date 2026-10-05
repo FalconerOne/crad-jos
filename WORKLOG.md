@@ -98,3 +98,20 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
   - **Zero-Token Verification:**
     - Executed `node scripts/sweep.js` headless assertion runner: 11/11 invariants PASSED (100%).
 
+---
+
+### [2026-10-05] Favicon ICO & Multi-Size PNG Upgrade
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** Completed
+- **Summary:**
+  - **Browser Tab Favicon Migration:**
+    - Replaced the problematic `public/logo.svg` tab favicon with standard cross-browser `favicon.ico`.
+    - Placed `favicon.ico` in both root `/favicon.ico` and `/public/favicon.ico`.
+    - Added high-resolution `public/favicon-32x32.png` and `public/favicon-16x16.png` for modern desktop/mobile browser tabs.
+    - Added `<link rel="icon" type="image/x-icon" href="favicon.ico">` and `<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">` in `index.html`.
+    - Updated `firebase.json` headers to cache `.ico` assets.
+  - **Zero-Token Verification:**
+    - Executed `node scripts/sweep.js`: 11/11 invariants PASSED (100%).
+    - Headless HTTP probe confirmed `/favicon.ico` returns Status 200 with `image/x-icon`.
+
+
