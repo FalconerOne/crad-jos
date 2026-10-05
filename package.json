@@ -1,0 +1,21 @@
+{
+  "name": "crad-jos",
+  "version": "1.0.0",
+  "description": "CRAD Diagnostic Services - Landing Page & Web App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node scripts/sweep.js",
+    "sweep": "node scripts/sweep.js"
+  },
+  "keywords": [
+    "crad",
+    "diagnostics",
+    "healthcare",
+    "medical-imaging",
+    "landing-page"
+  ],
+  "author": "FalconerOne Technologies",
+  "license": "UNLICENSED"
+}
