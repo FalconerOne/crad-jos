@@ -129,5 +129,25 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
   - Verified 11/11 invariants passing via `npm test`.
   - Pushed all `/public` changes to GitHub `main` and deployed to Firebase Hosting.
 
+---
+
+### [2026-10-05] Public Directory Restructuring: Flat Root Icons Architecture
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - Removed `public/c-rad-icons/` subfolder entirely.
+  - Placed all production icons directly in `/public/`:
+    - `public/favicon.ico` (& root `/favicon.ico`)
+    - `public/favicon-16x16.png`
+    - `public/favicon-32x32.png`
+    - `public/apple-touch-icon.png`
+    - `public/android-chrome-192x192.png`
+    - `public/android-chrome-512x512.png`
+    - `public/site.webmanifest`
+    - `public/manifest.json`
+  - Invariant sweep confirmed 11/11 PASSED (100%).
+  - Committed and pushed to GitHub `origin main` and deployed live to Firebase Hosting.
+
+
 
 
