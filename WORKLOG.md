@@ -114,4 +114,20 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
     - Executed `node scripts/sweep.js`: 11/11 invariants PASSED (100%).
     - Headless HTTP probe confirmed `/favicon.ico` returns Status 200 with `image/x-icon`.
 
+---
+
+### [2026-10-05] Asset Synchronization: Local /public Images to GitHub & Firebase
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - Synchronized updated icon suite in `/public`:
+    - Updated `favicon.ico`, `public/favicon-16x16.png`, and `public/favicon-32x32.png` with production branding.
+    - Added `public/apple-touch-icon.png` and updated `<link rel="apple-touch-icon">` in `index.html`.
+    - Added `public/c-rad-icons/` asset bundle containing multi-resolution Chrome/Android and Apple icons.
+    - Removed legacy `public/logo.svg` to eliminate SVG tab rendering issues.
+    - Updated `scripts/sweep.js` invariants 1 and 9 to enforce the Static Favicon ICO contract.
+  - Verified 11/11 invariants passing via `npm test`.
+  - Pushed all `/public` changes to GitHub `main` and deployed to Firebase Hosting.
+
+
 

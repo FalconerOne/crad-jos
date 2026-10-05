@@ -74,7 +74,7 @@ async function runSweep() {
     'firebase-messaging-sw.js',
     'firebase.json',
     '.firebaserc',
-    'public/logo.svg',
+    'favicon.ico',
     'public/icon-512.png',
     'public/manifest.json'
   ];
@@ -149,10 +149,10 @@ async function runSweep() {
   const jsOk = jsRes.statusCode === 200 && jsRes.contentType.includes('javascript');
   record('Contract', 'Static JS Asset MIME', jsOk, `Status ${jsRes.statusCode}, ${jsRes.contentType.split(';')[0]}`);
 
-  // 9. Static SVG Logo Contract
-  const svgRes = await checkHttpRequest('/public/logo.svg');
-  const svgOk = svgRes.statusCode === 200 && svgRes.contentType.includes('svg');
-  record('Contract', 'Static SVG Logo MIME', svgOk, `Status ${svgRes.statusCode}, ${svgRes.contentType.split(';')[0]}`);
+  // 9. Static Favicon ICO Contract
+  const icoRes = await checkHttpRequest('/favicon.ico');
+  const icoOk = icoRes.statusCode === 200 && (icoRes.contentType.includes('image') || icoRes.contentType.includes('icon'));
+  record('Contract', 'Static Favicon ICO MIME', icoOk, `Status ${icoRes.statusCode}, ${icoRes.contentType.split(';')[0]}`);
 
   // 10. 404 Route Containment
   const missingRes = await checkHttpRequest('/nonexistent-test-probe');
