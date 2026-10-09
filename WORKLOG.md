@@ -148,6 +148,19 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
   - Invariant sweep confirmed 11/11 PASSED (100%).
   - Committed and pushed to GitHub `origin main` and deployed live to Firebase Hosting.
 
+---
 
-
-
+### [2026-10-09] Trust Stats Removal & Hero Screen Space Recovery
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** Completed & Verified
+- **Summary:**
+  - **Removed Trust Stats Block:**
+    - Pruned `.trust-stats` and all 4 child items ("10+ Years Experience", "5K+ Patients Served", "11 Diagnostic Services", "100% Digital Precision") along with intermediate `.stat-divider` elements from [**`index.html`**](file:///c:/projects/crad-jos/index.html).
+  - **Screen Space Optimization:**
+    - Adjusted `.hero-section` vertical sizing (`min-height: auto; padding: 4.5rem 0 4.25rem;`) and eliminated `.hero-actions` 4.5rem bottom margin in [**`css/styles.css`**](file:///c:/projects/crad-jos/css/styles.css).
+    - Recovered valuable viewport space, bringing the hero CTAs, animated ECG heartbeat divider line, and Diagnostic Services cards higher into initial view.
+    - Cleaned up unused `.trust-stats`, `.stat-item`, `.stat-number`, and `.stat-divider` CSS rules and responsive overrides.
+  - **Autonomous Sweep Harness Enhancement:**
+    - Upgraded [**`scripts/sweep.js`**](file:///c:/projects/crad-jos/scripts/sweep.js) to self-contained execution with automated background dev server spin-up and safe content-type handling.
+  - **Verification:**
+    - Executed `node scripts/sweep.js`: 11/11 invariants PASSED (100%).

@@ -11,8 +11,11 @@ const vm = require('vm');
 const ROOT = path.resolve(__dirname, '..');
 const PORT = 3000;
 
+const { fork } = require('child_process');
+
 const results = [];
 let testIndex = 1;
+let localServerProc = null;
 
 function record(category, name, pass, detail) {
   results.push({
@@ -53,13 +56,25 @@ function checkHttpRequest(urlPath) {
       });
     });
     req.on('error', (err) => {
-      resolve({ statusCode: 0, error: err.message });
+      resolve({ statusCode: 0, contentType: '', error: err.message });
     });
     req.setTimeout(1500, () => {
       req.destroy();
-      resolve({ statusCode: 0, error: 'Timeout' });
+      resolve({ statusCode: 0, contentType: '', error: 'Timeout' });
     });
   });
+}
+
+async function ensureServerRunning() {
+  const probe = await checkHttpRequest('/');
+  if (probe.statusCode > 0) return;
+
+  localServerProc = fork(path.join(ROOT, 'server.js'), [], { silent: true });
+  for (let i = 0; i < 20; i++) {
+    await new Promise(r => setTimeout(r, 100));
+    const p = await checkHttpRequest('/');
+    if (p.statusCode > 0) break;
+  }
 }
 
 async function runSweep() {
@@ -133,26 +148,27 @@ async function runSweep() {
   record('Kernel', 'Contact & Location Invariants', contactOk, contactOk ? 'Phone, email, Jos address OK' : 'Incomplete contact info');
 
   // ─── Archetype 2: Contract-Bound Headless Synthetic Scenario ─────────────────
+  await ensureServerRunning();
 
   // 6. HTTP Root Endpoint
   const rootRes = await checkHttpRequest('/');
   const rootOk = rootRes.statusCode === 200 && rootRes.contentType.includes('text/html');
-  record('Contract', 'HTTP Root Endpoint', rootOk, `Status ${rootRes.statusCode}, ${rootRes.contentType.split(';')[0]}`);
+  record('Contract', 'HTTP Root Endpoint', rootOk, `Status ${rootRes.statusCode}, ${(rootRes.contentType || '').split(';')[0] || (rootRes.error || '')}`);
 
   // 7. Static CSS Asset Contract
   const cssRes = await checkHttpRequest('/css/styles.css');
   const cssOk = cssRes.statusCode === 200 && cssRes.contentType.includes('text/css');
-  record('Contract', 'Static CSS Asset MIME', cssOk, `Status ${cssRes.statusCode}, ${cssRes.contentType.split(';')[0]}`);
+  record('Contract', 'Static CSS Asset MIME', cssOk, `Status ${cssRes.statusCode}, ${(cssRes.contentType || '').split(';')[0] || (cssRes.error || '')}`);
 
   // 8. Static JS Asset Contract
   const jsRes = await checkHttpRequest('/js/main.js');
   const jsOk = jsRes.statusCode === 200 && jsRes.contentType.includes('javascript');
-  record('Contract', 'Static JS Asset MIME', jsOk, `Status ${jsRes.statusCode}, ${jsRes.contentType.split(';')[0]}`);
+  record('Contract', 'Static JS Asset MIME', jsOk, `Status ${jsRes.statusCode}, ${(jsRes.contentType || '').split(';')[0] || (jsRes.error || '')}`);
 
   // 9. Static Favicon ICO Contract
   const icoRes = await checkHttpRequest('/favicon.ico');
   const icoOk = icoRes.statusCode === 200 && (icoRes.contentType.includes('image') || icoRes.contentType.includes('icon'));
-  record('Contract', 'Static Favicon ICO MIME', icoOk, `Status ${icoRes.statusCode}, ${icoRes.contentType.split(';')[0]}`);
+  record('Contract', 'Static Favicon ICO MIME', icoOk, `Status ${icoRes.statusCode}, ${(icoRes.contentType || '').split(';')[0] || (icoRes.error || '')}`);
 
   // 10. 404 Route Containment
   const missingRes = await checkHttpRequest('/nonexistent-test-probe');
@@ -162,7 +178,12 @@ async function runSweep() {
   // 11. FCM Service Worker Route Contract
   const swRes = await checkHttpRequest('/firebase-messaging-sw.js');
   const swOk = swRes.statusCode === 200 && swRes.contentType.includes('javascript');
-  record('Contract', 'FCM Service Worker Route', swOk, `Status ${swRes.statusCode}, ${swRes.contentType.split(';')[0]}`);
+  record('Contract', 'FCM Service Worker Route', swOk, `Status ${swRes.statusCode}, ${(swRes.contentType || '').split(';')[0] || (swRes.error || '')}`);
+
+  // Clean up spawned server if started by test runner
+  if (localServerProc) {
+    try { localServerProc.kill(); } catch (e) {}
+  }
 
   // Print results
   printAsciiTable();
