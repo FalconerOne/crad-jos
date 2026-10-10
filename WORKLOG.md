@@ -224,5 +224,25 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
     - Deployed live bundle to Firebase Hosting (`https://crad-jos.web.app`).
     - Pushed changes to GitHub repository `main`.
 
+---
+
+### [2026-10-10] Cache-Busting Versioning, No-Cache Headers & Amplified Mobile Card Outlines
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - **Solved Mobile Browser Stale Cache & Outline Contrast:**
+    - **Asset Version Cache-Busting:** Appended `?v=2.2` query string to `css/styles.css`, `js/main.js`, and `js/firebase-init.js` in [**`index.html`**](file:///c:/projects/crad-jos/index.html). This forces mobile browsers (Chrome/Safari) to immediately download fresh styles without requiring the user to clear their device cache.
+    - **No-Cache HTML Headers in [`firebase.json`](file:///c:/projects/crad-jos/firebase.json):** Configured `Cache-Control: no-cache, no-store, must-revalidate` for `/` and `/index.html` so that mobile devices always fetch the latest HTML shell with the new asset versions.
+    - **Amplified Mobile Resting Outlines ([`css/styles.css`](file:///c:/projects/crad-jos/css/styles.css#L1026)):**
+      - Upgraded the mobile laser hairline to `height: 3px` with glowing drop-shadow (`box-shadow: 0 0 12px rgba(6, 182, 212, 0.75)` for imaging, `0 0 12px rgba(16, 185, 129, 0.75)` for lab).
+      - Increased card resting border contrast to `rgba(6, 182, 212, 0.42)` and `rgba(16, 185, 129, 0.42)` with ambient shadow auras so cards unmistakably pop on high-DPI screens in bright environments.
+  - **Zero-Token Verification:**
+    - Executed `npm test` (`scripts/sweep.js`): 11/11 invariants PASSED (100%).
+    - Probed live site via HTTP: confirmed root endpoint returns `Cache-Control: no-cache, no-store, must-revalidate`, HTML references `styles.css?v=2.2`, and `styles.css?v=2.2` serves the 3px laser crowns and 0.42 chromatic borders.
+  - **Production Deployment & GitHub Sync:**
+    - Deployed live bundle to Firebase Hosting (`https://crad-jos.web.app`).
+    - Pushed changes to GitHub repository `main`.
+
+
 
 
