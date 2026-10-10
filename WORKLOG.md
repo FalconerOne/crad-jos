@@ -9,7 +9,7 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
 | Attribute | Current Value |
 | :--- | :--- |
 | **Project Name** | CRAD-JOS |
-| **Status** | 🚀 **Live in Production on Firebase (Luminous Ambience Upgrade)** |
+| **Status** | 🚀 **Live in Production on Firebase (Compact Viewport & Mobile Ergonomics v2.2)** |
 | **Production URL** | [https://crad-jos.web.app](https://crad-jos.web.app) / [https://crad-jos.firebaseapp.com](https://crad-jos.firebaseapp.com) |
 | **Patient / Staff Portal** | [https://portal.c-rad.com.ng](https://portal.c-rad.com.ng) |
 | **Platform / Stack** | Vanilla HTML5, CSS3, ES6+ JS, Firebase Hosting, FCM |
@@ -242,6 +242,27 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
   - **Production Deployment & GitHub Sync:**
     - Deployed live bundle to Firebase Hosting (`https://crad-jos.web.app`).
     - Pushed changes to GitHub repository `main`.
+
+---
+
+### [2026-10-10] Architectural Codification: Generic Compact Viewport & Touch Ergonomics Blueprint
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** Completed & Documented
+- **Summary:**
+  - **Distilled Reusable Design Blueprint:**
+    - Formalized the 4 engineering standards applied across the CRAD-JOS refactors into a portable, cross-project agent directive:
+      1. *The 650px Laptop Viewport Standard (Anti-Hero Bloat):* Tight section cushions (`2rem–2.5rem`), calibrated title clamp (`clamp(1.9rem, 3.8vw, 3.2rem)`), single consolidated eyebrow pill, and above-the-fold CTA guarantees.
+      2. *Mobile & Touchscreen Interaction Parity (Fixing the Hover Gap):* Permanent resting laser crowns (`height: 3px`, glow shadows), department/feature chromatic border signatures (`0.42` opacity), tactile spring touch press (`:active scale(0.982)`), and whole-card tap delegation.
+      3. *Deterministic Cache-Busting Architecture:* URL version parameters (`?v=X.X`) on asset links paired with `no-cache, no-store, must-revalidate` for HTML shells on CDN.
+      4. *Headless Zero-Token Verification:* Single-command, sub-second CLI assertion runs via `node scripts/sweep.js` / `npm test`.
+  - **Current System Health:**
+    - Test Suite: 11/11 invariants passing (100%).
+    - Production: Live on Firebase CDN (`https://crad-jos.web.app`) with v2.2 asset cache-busting.
+    - Git: Clean working tree, synchronized with GitHub remote `main`.
+  - **Explicit Next Steps:**
+    - Monitor client feedback on form submissions or inquiry conversion rates.
+    - Future enhancements: Integrate automated GitHub Actions CI/CD workflow (`firebase-hosting-merge.yml`) if automatic continuous deployment on `git push` is desired.
+
 
 
 
