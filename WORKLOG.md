@@ -164,3 +164,22 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
     - Upgraded [**`scripts/sweep.js`**](file:///c:/projects/crad-jos/scripts/sweep.js) to self-contained execution with automated background dev server spin-up and safe content-type handling.
   - **Verification:**
     - Executed `node scripts/sweep.js`: 11/11 invariants PASSED (100%).
+
+---
+
+### [2026-10-10] Firebase Hosting Production Deployment & Live Verification
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - **Investigated Discrepancy:**
+    - Identified that while commit `632ea8f` was pushed to GitHub `origin/main`, Firebase Hosting had not been deployed, leaving the live site on the older October 5th release with stats visible.
+  - **Production Deployment:**
+    - Executed `npx firebase-tools deploy --only hosting` to sync the updated build to Firebase CDN.
+  - **Live Verification Probe:**
+    - Probed `https://crad-jos.web.app` directly via HTTP:
+      - `Years Experience` present: **false** (successfully pruned)
+      - `trust-stats` present: **false** (successfully pruned)
+      - `ecg-divider-wrap` present: **true** (intact, elevated directly below hero actions)
+  - **Autonomous Sweep Execution:**
+    - Ran `npm test` (`scripts/sweep.js`): 11/11 invariants PASSED (100%).
+
