@@ -225,6 +225,18 @@ function initModal() {
     });
   });
 
+  // Seamless whole-card tap delegation for mobile/tablet ergonomics
+  const serviceCards = document.querySelectorAll('.glow-card[data-category]');
+  serviceCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.card-action-link')) return;
+      const actionLink = card.querySelector('.card-action-link');
+      if (actionLink) {
+        actionLink.click();
+      }
+    });
+  });
+
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       modal.classList.remove('active');

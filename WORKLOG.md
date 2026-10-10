@@ -203,4 +203,26 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
     - Deployed live bundle to Firebase Hosting (`https://crad-jos.web.app`).
     - Pushed changes to GitHub repository `main`.
 
+---
+
+### [2026-10-10] Mobile Service Card Illumination, Department Coding & Touch Ergonomics
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - **Solved Mobile Hover Absence on Diagnostic Service Cards:**
+    - **Permanent Resting Sheen for Mobile/Touch (`@media (hover: none), (max-width: 992px)`):** Rendered a persistent 85% opacity surgical laser hairline ([`.glow-card::before`](file:///c:/projects/crad-jos/css/styles.css#L955)) across the top of all cards, ensuring they look illuminated and dynamic at rest while scrolling.
+    - **Department Chromatic Signatures:**
+      - *Medical Imaging (7 services):* Cyan laser hairline, `rgba(6, 182, 212, 0.22)` resting border tint, and radial cyan spotlight backdrop.
+      - *Laboratory & Clinical (4 services):* Clinical emerald laser hairline, `rgba(16, 185, 129, 0.22)` resting border tint, and radial emerald spotlight backdrop.
+    - **Tactile Touch Feedback ([`.glow-card:active`](file:///c:/projects/crad-jos/css/styles.css#L974)):** Added instantaneous spring compression (`scale(0.982)`) and intense perimeter glow (electric cyan for imaging, emerald for lab) upon finger contact.
+    - **Whole-Card Tap Ergonomics ([`js/main.js`](file:///c:/projects/crad-jos/js/main.js#L228)):** Delegated whole-card clicks to trigger the diagnostic inquiry modal with preselected service, removing small-target thumb frustration.
+    - **Clinical Action Link Pill:** Upgraded [`.card-action-link`](file:///c:/projects/crad-jos/css/styles.css#L1045) into a clear pill with subtle border and department-matched hover aura.
+  - **Zero-Token Verification:**
+    - Executed `npm test` (`scripts/sweep.js`): 11/11 invariants PASSED (100%).
+    - Probed live site via HTTP: confirmed deployed CSS and JS assets include department coding, active states, and mobile resting sheen.
+  - **Production Deployment & GitHub Sync:**
+    - Deployed live bundle to Firebase Hosting (`https://crad-jos.web.app`).
+    - Pushed changes to GitHub repository `main`.
+
+
 
