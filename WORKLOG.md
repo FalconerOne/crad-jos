@@ -183,3 +183,24 @@ All ongoing progress, completed tasks, architectural decisions, and next steps a
   - **Autonomous Sweep Execution:**
     - Ran `npm test` (`scripts/sweep.js`): 11/11 invariants PASSED (100%).
 
+---
+
+### [2026-10-10] Hero Density Optimization & Above-the-Fold ECG Elevation
+- **Author/Agent:** Antigravity AI Pair Programmer
+- **Status:** 🚀 Live in Production
+- **Summary:**
+  - **Solved "Hero Bloat" & Excessive Vertical Scrolling:**
+    - Implemented the **Surgical Clinical Density + Integrated Pulse Strategy**.
+    - Replaced the separate top status badge and bottom location pill with a unified luminous clinical telemetry pill ([`.hero-badge`](file:///c:/projects/crad-jos/css/styles.css#L644)): `[Live Radar Dot] Diagnostic Center Active • No. 3 Keana Road, Jos, Plateau State`.
+    - Pruned dead vertical padding from `.hero-section` (from `4.5rem/4.25rem` down to `2.25rem/1.25rem`), recovering ~84px.
+    - Calibrated headline scaling in `.hero-title` (`clamp(2rem, 4.2vw, 3.4rem)`) and tightened description margins (`1.6rem`), recovering ~60px.
+    - Tightened `.hero-fade-bottom` (from 140px to 50px) and `.ecg-divider-wrap` (from 64px to 48px), pulling the animated cardiac ECG directly beneath the hero action buttons.
+    - Added dedicated mobile optimizations in `@media (max-width: 640px)` for compact titles, pill wrapping, and button padding.
+  - **Zero-Token Verification:**
+    - Executed `npm test` (`scripts/sweep.js`): 11/11 invariants PASSED (100%).
+    - Probed live site via HTTP: confirmed unified status badge active, old location pill removed, and ECG pulse divider fully functional.
+  - **Production Deployment & GitHub Sync:**
+    - Deployed live bundle to Firebase Hosting (`https://crad-jos.web.app`).
+    - Pushed changes to GitHub repository `main`.
+
+
